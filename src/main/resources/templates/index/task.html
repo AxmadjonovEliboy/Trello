@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .scroll{
+            overflow-y: scroll;
+        }
+        .scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/index3.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <main>
+        <div class="menu-bar">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="">
+        </div>
+
+        <div class="link">
+            <a th:href="@{/home/}"> -- Home
+            </a>
+            <a href="#">Task manager</a>
+            <a href="#">Inbox</a>
+            <a href="#">Contacts</a>
+        </div>
+    </main>
+
+    <aside>
+        <nav>
+            <div class="input">
+                <div>
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="user-information">
+                <div class="icon">
+
+                    <button type="button" class="btn btn-primary position-relative">
+                        <img th:src="@{/images/bell.png}" alt="">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                             123456+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    </button>
+                    <i class="far fa-envelope"></i>
+                </div>
+
+                <div class="user">
+
+                    <img th:src="@{/images/useer.png}" alt="">
+                    <p>
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <!--                            <i class="fas fa-angle-down"></i>-->
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" th:href="@{/auth/logout}" style="color: red">LOGOUT</a></li>
+                            <li><a class="dropdown-item" th:href="@{/auth/profile}">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                        </ul>
+                    </div>
+
+                    <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assalou alaykum Eliboy aka">-->
+                    <!--                            -->
+                    <!--                        </button>-->
+                    <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Assalou alaykum Eliboy aka">-->
+
+                    <!--                        </button>-->
+
+                    </p>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <div class="container">
+            <h4>Task name</h4>
+
+
+            <div class="contents">
+
+
+                <div class="content-actions">
+                    <h5>Actions</h5>
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/images/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/images/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/images/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/images/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/images/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+                </div>
+
+
+                <div class="container-box">
+                    <div class="content-box">
+                        <p>Добавить статистику по задачам, часам.
+                            Сделать сбор статистики за текущий месяц и создание уведомления в последний день месяца.</p>
+                    </div>
+                    <div class="content-box">
+                        <textarea placeholder="Комментарий..." id="" cols="10" rows="3"></textarea>
+                        <button type="submit">Опубликовать</button>
+                    </div>
+
+                    <div class="container-box scroll">
+                        <div class="content-box">
+                            <div class="flex">
+                                <p class="box-text"><img th:src="@{/images/avatar.png}" alt="">Artur </p>
+                                <p>12/04/2021, 6:37 p.m</p>
+                            </div>
+                            <span>1. Добавлены шаблонные теги для подсчёта часов, потраченных на закрытые задачи.</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="content-status">
+                    <div class="status">
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <button class="low">Low</button>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <span>Frozen</span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <span>12/04/2021</span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <span>21/04/2021</span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <span>Adyl, Azhar, Arthur</span>
+                        </div>
+                    </div>
+
+                    <div class="btn">
+                        <button type="submit">Change the priority
+                            <img th:src="@{/images/down.png}" alt="">
+                        </button>
+
+                        <button type="submit">Change the priority
+                            <img th:src="@{/images/down.png}" alt="">
+                        </button>
+
+                        <button type="submit">
+                            <img th:src="@{/images/usercheck.png}" alt="">Become a participant
+                        </button>
+
+                        <button type="submit">
+                            <img th:src="@{/images/ion_snow.png}" alt="">Freeze the task
+                        </button>
+
+                        <button type="submit">
+                            <img th:src="@{/images/check.png}" alt="">Close task
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </aside>
+
+</header>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+<script>
+    const menu = document.querySelector(".menu-bar")
+    const main = document.querySelector("main")
+    menu.addEventListener("click", () => {
+        main.classList.toggle("open")
+    })
+</script>
+</body>
+</html>

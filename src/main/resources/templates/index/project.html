@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+    .todoContent-box {
+        overflow-y: scroll;
+    }
+
+    .todoContent-box::-webkit-scrollbar {
+        display: none;
+    }
+
+    body {
+        text-decoration: none;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index html one</title>
+    <link rel="stylesheet" th:href="@{/css/index2.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<header>
+    <main>
+        <div class="menu-bar">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="">
+        </div>
+
+        <div class="link">
+            <a th:href="@{/home/}"> -- Home
+            </a>
+            <a href="#">Task manager</a>
+            <a href="#">Inbox</a>
+            <a href="#">Contacts</a>
+        </div>
+    </main>
+
+    <aside>
+        <nav>
+            <div class="input">
+                <div>
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="user-information">
+                <div class="icon">
+
+                    <button type="button" class="btn btn-primary position-relative">
+                        <img th:src="@{/images/bell.png}" alt="">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                             123456+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    </button>
+                    <i class="far fa-envelope"></i>
+                </div>
+
+                <div class="user">
+
+                    <img th:src="@{/images/useer.png}" alt="">
+                    <p>
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <!--                            <i class="fas fa-angle-down"></i>-->
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" th:href="@{/auth/logout}" style="color: red">LOGOUT</a></li>
+                            <li><a class="dropdown-item" th:href="@{/auth/profile}">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                        </ul>
+                    </div>
+
+                    </p>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <div class="container">
+            <h3 th:text="${project.name}"></h3>
+
+            <div class="contents">
+                <div class="content">
+                    <div class="box">
+                        <p><b>Closed</b> <span th:text="${project.closed}"></span></p>
+                        <p><b>Deadline:</b><span th:text="${project.finishDate}"> </span></p>
+                    </div>
+                    <div class="content-box">
+                        <p>
+                        <div class="dropdown" style=" display: inline-block">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="newId"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Members
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="newId">
+                                <tr th:each="member, iter: ${members}">
+                                    <li>
+                                        <td th:text="${member.username}"></td>
+                                    </li>
+                                </tr>
+                            </ul>
+                        </div>
+                        <div class="dropdown" style=" display: inline-block">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="nodir"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Invite Users
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="nodir">
+                                <tr th:each="user, iter: ${users}">
+                                    <li>
+                                        <td>
+                                            <a th:href="@{/projectMember/addMember/{user_id}/{project_id}(user_id=${user.id},project_id=${project.id})}"
+                                               class="btn btn-primary" style="margin-top: 5px">➕</a>
+                                        </td>
+                                        <td th:text="${user.username}"></td>
+                                    </li>
+                                </tr>
+                            </ul>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="boxs">
+                        <p><b>All tasks:</b> 1</p>
+                        <p><b>Done:</b> 1</p>
+                    </div>
+                </div>
+
+
+                <div class="todoContainer">
+                    <div class="todoContent-box" th:each="column : ${columns}">
+                        <div class="todo-img">
+                            <h5 th:text="${column.name}"></h5>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    ▪️▪️▪️
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">✏️ Update</a></li>
+                                    <li><a class="dropdown-item"
+                                           th:href="@{/column/delete/{column_id}(column_id=${column.id})}">🗑 Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div th:each="task : ${column.tasks}">
+                            <div th:if="${column.id} == ${task.columnId}">
+                                    <div class="task">
+                                        <div class="todo-box">
+
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                    ▪️▪️▪️
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">✏️ Update</a></li>
+                                                    <li><a class="dropdown-item"
+                                                           th:href="@{/}">🗑 Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <h4><p th:text="${task.name}"></p>
+                                                <button th:class="low" th:text="${task.level}"></button>
+
+                                            </h4>
+                                            <a th:href="@{/task/detail}" style="text-decoration: none">
+
+                                            <p>Deadline: <span th:text="${task.deadline}">Participant:  </span></p>
+                                            <p>Description: <span th:text="${task.description}"
+                                                                  style="max-width: 100% ; text-align: justify">Participant:  </span>
+                                            </a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="husan"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <img th:src="@{/images/plus-circle.png}" alt=""/>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="husan">
+                                <form th:action="@{/task/create/{project_id}/{column_id}(project_id=${project.id} , column_id=${column.id})}"
+                                      method="post">
+                                    <input type="text" placeholder="Add todo name" name="name"/>
+                                    <input type="text" placeholder="Description " name="description"/>
+                                    <select name="level" class="form-select" aria-label="Default select example">
+                                        <option selected>Level</option>
+                                        <option value="HARD">Hard</option>
+                                        <option value="MIDDLE">Middle</option>
+                                        <option value="EASY">Easy</option>
+                                    </select>
+
+                                    <select name="priority" class="form-select" aria-label="Default select example">
+                                        <option selected>Priority</option>
+                                        <option value="EASY">Easy</option>
+                                        <option value="MEDIUM">Medium</option>
+                                        <option value="HIGH">High</option>
+                                    </select>
+                                    <input type="datetime-local" name="finishDate"/>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="create_column">
+                        <div class="todoContent-box">
+                            <div class="todo-img">
+                                <h5>Create Column</h5>
+                                <a class="btn" id="show"><img th:src="@{/images/plus-circle.png}" alt=""></a>
+                            </div>
+                            <div class="forma" id="register" style="display: none">
+                                <form th:action="@{/column/create/{id}(id=${project.id})}" th:method="post"
+                                      th:object="${dto}">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Column Name</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="button" id="hide" class="btn btn-light hide">❌</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--                <div class="todoContainer ">-->
+                <!--                    <div class="todoContent-box">-->
+                <!--                        <div class="todo-img">-->
+                <!--                            <h1>To Do</h1>-->
+                <!--                            <div class="dropdown">-->
+                <!--                                <button class="btn btn-secondary dropdown-toggle" type="button" id="husan"-->
+                <!--                                        data-bs-toggle="dropdown" aria-expanded="false">-->
+                <!--                                    <img th:src="@{/images/plus-circle.png}" alt=""/>-->
+                <!--                                </button>-->
+                <!--                                <ul class="dropdown-menu" aria-labelledby="husan">-->
+                <!--                                    <form th:action="@{/task/create/{project_id}(project_id=${project.id})}"-->
+                <!--                                          method="post">-->
+                <!--                                        <input type="text" placeholder="Add todo name" name="name"/>-->
+                <!--                                        <input type="text" placeholder="Description " name="description"/>-->
+                <!--                                        <select name="level" class="form-select" aria-label="Default select example">-->
+                <!--                                            <option selected>Level</option>-->
+                <!--                                            <option value="HARD">Hard</option>-->
+                <!--                                            <option value="MIDDLE">Middle</option>-->
+                <!--                                            <option value="EASY">Easy</option>-->
+                <!--                                        </select>-->
+
+                <!--                                        <select name="priority" class="form-select" aria-label="Default select example">-->
+                <!--                                            <option selected>Priority</option>-->
+                <!--                                            <option value="EASY">Easy</option>-->
+                <!--                                            <option value="MEDIUM">Medium</option>-->
+                <!--                                            <option value="HIGH">High</option>-->
+                <!--                                        </select>-->
+                <!--                                        <input type="datetime-local" name="finishDate"/>-->
+                <!--                                        <button type="submit" class="btn btn-primary">Add</button>-->
+                <!--                                    </form>-->
+                <!--                                </ul>-->
+                <!--                            </div>-->
+
+
+                <!--                        </div>-->
+                <!--                        <div th:each="column, iter: ${columns}">-->
+                <!--                            <div th:each="task, iter: ${column.tasks}">-->
+                <!--                                <a th:href="@{/task/task}" style="text-decoration: none">-->
+
+                <!--                                    <div class="todo-box">-->
+                <!--                                        <h4 th:text="${task.name}" style="display: inline-block ;">-->
+                <!--                                        </h4>-->
+                <!--                                        <button class="low" th:text="${task.level}"-->
+                <!--                                                style=" margin-left: 100px ; border-radius: 5px"></button>-->
+                <!--                                        <p> description : <span th:text="${task.description}"></span></p>-->
+                <!--                                    </div>-->
+
+                <!--                                </a>-->
+                <!--                            </div>-->
+
+                <!--                        </div>-->
+
+                <!--                    </div>-->
+                <!--                    <div class="todoContent-box">-->
+                <!--                        <div class="todo-img">-->
+                <!--                            <h2>To do</h2>-->
+                <!--                        </div>-->
+
+                <!--                    </div>-->
+                <!--                    <div class="todoContent-box">-->
+                <!--                        <div class="todo-img">-->
+                <!--                            <h2>To do</h2>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                    <div class="todoContent-box">-->
+                <!--                        <div class="todo-img">-->
+                <!--                            <h2>To do</h2>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </aside>
+
+</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script>
+    const menu = document.querySelector(".menu-bar")
+    const main = document.querySelector("main")
+    menu.addEventListener("click", () => {
+        main.classList.toggle("open")
+    })
+</script>
+<script>
+    document.getElementById("hide").onclick = function () {
+        document.getElementById("register").style.display = "none";
+    }
+
+    document.getElementById("show").onclick = function () {
+        document.getElementById("register").style.display = "block";
+    }
+</script>
+</body>
+</html>
